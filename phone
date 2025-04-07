@@ -1,0 +1,11 @@
+if [ $# -eq 0 ]; then
+	echo "Usage: phone searchfor [...searchfor] (You didn't tell me what you want to search for.)"
+	exit 1
+fi
+A=$1
+B=${2:-}
+if [ -z "$B" ]; then
+	egrep "$A" mydata.txt | awk -f display.awk
+else
+	egrep "$A|$B" mydata.txt | awk -f display.awk
+fi
